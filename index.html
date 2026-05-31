@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Laguna Lakeside Reserve | Menu</title>
+  <style>
+    :root {
+      --bg: #020202;
+      --text: #ffffff;
+      --muted: #cfcfcf;
+      --line: rgba(255, 255, 255, 0.7);
+      --soft: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: 0.06em;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 35%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 25%, rgba(255, 255, 255, 0.03));
+      z-index: -1;
+    }
+
+    .app {
+      width: min(100%, 520px);
+      margin: 0 auto;
+      padding: 22px 18px 44px;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 8px;
+    }
+
+    .top-logo {
+      width: 72px;
+      height: auto;
+      margin: 0 auto 34px;
+      opacity: 0.95;
+    }
+
+    .brand-logo {
+      width: min(78%, 330px);
+      margin: 30px auto 12px;
+      display: block;
+    }
+
+    .subtitle {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.22em;
+      margin-top: 0;
+    }
+
+    .hero-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 10vw, 4rem);
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      margin: 0;
+    }
+
+    .hero-small {
+      color: var(--muted);
+      margin: 20px auto 28px;
+      max-width: 320px;
+      line-height: 1.7;
+      font-size: 0.78rem;
+      letter-spacing: 0.13em;
+    }
+
+    .nav {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      padding: 15px 18px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      letter-spacing: 0.16em;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .page {
+      min-height: 100svh;
+      padding: 26px 0 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 1px solid var(--soft);
+    }
+
+    .page-header {
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    .page-header img {
+      width: 48px;
+      opacity: 0.95;
+    }
+
+    .section {
+      margin: 28px 0;
+    }
+
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      text-align: center;
+      letter-spacing: 0.22em;
+      font-size: clamp(1.45rem, 7vw, 2.25rem);
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 0 22px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+      flex: 1;
+    }
+
+    .diamond {
+      width: 9px;
+      height: 9px;
+      border: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      margin: 15px 0;
+    }
+
+    .name {
+      font-size: clamp(1rem, 4.7vw, 1.28rem);
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .price {
+      font-size: clamp(1rem, 4.7vw, 1.28rem);
+      white-space: nowrap;
+      line-height: 1.25;
+    }
+
+    .desc {
+      grid-column: 1 / -1;
+      margin-top: -9px;
+      color: var(--muted);
+      font-size: clamp(0.72rem, 3.4vw, 0.9rem);
+      line-height: 1.55;
+      letter-spacing: 0.035em;
+      text-transform: none;
+    }
+
+    .signature .item {
+      padding-bottom: 18px;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.45);
+    }
+
+    .signature .item:last-child {
+      border-bottom: 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    .footer::before {
+      content: "";
+      display: block;
+      height: 1px;
+      background: var(--line);
+      margin: 0 0 20px;
+    }
+
+    .footer .brand-logo {
+      width: min(72%, 300px);
+      margin-top: 0;
+    }
+
+    .page-number {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      color: #000;
+      background: #fff;
+      text-decoration: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      z-index: 10;
+      opacity: 0.88;
+    }
+
+    @media (min-width: 700px) {
+      .app {
+        padding-inline: 28px;
+      }
+    }
+
+    @media print {
+
+      .back-top,
+      .nav {
+        display: none;
+      }
+
+      .page {
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="back-top" href="#top" aria-label="Torna su">↑</a>
+
+  <main id="top" class="app">
+    <section class="hero">
+      <img class="top-logo" src="/img/ALPHA_GLIFO_B.png" alt="Laguna icon" />
+      <h1 class="hero-title">LAGUNA</h1>
+      <p class="subtitle">Lakeside Reserve</p>
+      <p class="hero-small">Menu digitale ottimizzato per smartphone</p>
+
+      <nav class="nav" aria-label="Categorie menu">
+        <a href="#pagina-1">Caffetteria & Soft Drink</a>
+        <a href="#pagina-2">Birre, Vini & Bottiglie</a>
+        <a href="#pagina-3">Cocktail Menu & Grandi Classici</a>
+        <a href="#pagina-4">Drink List</a>
+      </nav>
+    </section>
+
+    <section id="pagina-1" class="page">
+      <div>
+        <header class="page-header"><img src="/img/ALPHA_GLIFO_B.png" alt="" /></header>
+
+        <div class="section">
+          <h2 class="section-title">Caffetteria</h2>
+          <div class="divider"><span class="diamond"></span></div>
+
+          <div class="item">
+            <div class="name">Caffè</div>
+            <div class="price">€ 1,50</div>
+          </div>
+          <div class="item">
+            <div class="name">Decaffeinato</div>
+            <div class="price">€ 1,70</div>
+          </div>
+          <div class="item">
+            <div class="name">Cappuccino</div>
+            <div class="price">€ 2,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Brioche</div>
+            <div class="price">€ 2,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bicchiere acqua</div>
+            <div class="price">€ 0,50</div>
+          </div>
+          <div class="item">
+            <div class="name">Succo</div>
+            <div class="price">€ 4,00</div>
+            <div class="desc">Pesca / Pera / ACE</div>
+          </div>
+          <div class="item">
+            <div class="name">Succo mirtillo</div>
+            <div class="price">€ 4,50</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Soft Drink</h2>
+          <div class="divider"><span class="diamond"></span></div>
+
+          <div class="item">
+            <div class="name">Coca Cola</div>
+            <div class="price">€ 4,50</div>
+          </div>
+          <div class="item">
+            <div class="name">Coca Cola Zero</div>
+            <div class="price">€ 4,50</div>
+          </div>
+          <div class="item">
+            <div class="name">Fanta</div>
+            <div class="price">€ 4,50</div>
+          </div>
+          <div class="item">
+            <div class="name">Tè</div>
+            <div class="price">€ 4,50</div>
+            <div class="desc">Pesca / Limone</div>
+          </div>
+          <div class="item">
+            <div class="name">Red Bull</div>
+            <div class="price">€ 5,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Cedrata</div>
+            <div class="price">€ 4,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Acqua</div>
+            <div class="price">€ 2,00</div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer"><img class="brand-logo" src="/img/LOGO_N.png" alt="Laguna Lakeside Reserve" />
+        <div class="page-number">1 / 4</div>
+      </footer>
+    </section>
+
+    <section id="pagina-2" class="page">
+      <div>
+        <header class="page-header"><img src="/img/ALPHA_GLIFO_B.png" alt="" /></header>
+
+        <div class="section">
+          <h2 class="section-title">Birre</h2>
+          <div class="divider"><span class="diamond"></span></div>
+          <div class="item">
+            <div class="name">San Miguel alla spina 40 cl</div>
+            <div class="price">€ 5,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bud 33 cl</div>
+            <div class="price">€ 5,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Corona 33 cl</div>
+            <div class="price">€ 5,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Corona Cero 33 cl</div>
+            <div class="price">€ 5,00</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Vini</h2>
+          <div class="divider"><span class="diamond"></span></div>
+          <div class="item">
+            <div class="name">Vino rosso al calice</div>
+            <div class="price">€ 8,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Vino bianco al calice</div>
+            <div class="price">€ 8,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Prosecco al calice</div>
+            <div class="price">€ 6,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Franciacorta al calice</div>
+            <div class="price">€ 10,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Franciacorta Rosè al calice</div>
+            <div class="price">€ 12,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bottiglia vino rosso</div>
+            <div class="price">€ 33,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bottiglia vino bianco</div>
+            <div class="price">€ 33,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bottiglia prosecco</div>
+            <div class="price">€ 25,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bottiglia Franciacorta</div>
+            <div class="price">€ 60,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Bottiglia Franciacorta Rosè</div>
+            <div class="price">€ 37,00</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Bottiglie</h2>
+          <div class="divider"><span class="diamond"></span></div>
+          <div class="item">
+            <div class="name">Ketel One</div>
+            <div class="price">€ 150,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Tanqueray Ten</div>
+            <div class="price">€ 180,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Casamigos Blanco</div>
+            <div class="price">€ 250,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Casamigos Reposado</div>
+            <div class="price">€ 300,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Don Julio 1942</div>
+            <div class="price">€ 1200,00</div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer"><img class="brand-logo" src="/img/LOGO_N.png" alt="Laguna Lakeside Reserve" />
+        <div class="page-number">2 / 4</div>
+      </footer>
+    </section>
+
+    <section id="pagina-3" class="page">
+      <div>
+        <header class="page-header"><img src="/img/ALPHA_GLIFO_B.png" alt="" /></header>
+
+        <div class="section">
+          <h2 class="section-title">Cocktail Menù</h2>
+          <div class="divider"><span class="diamond"></span></div>
+          <div class="item">
+            <div class="name">Spritz</div>
+            <div class="price">€ 7,00</div>
+            <div class="desc">Aperol / Campari / Venturo</div>
+          </div>
+          <div class="item">
+            <div class="name">Tanqueray</div>
+            <div class="price">€ 10,00</div>
+            <div class="desc">Lemon / Tonic</div>
+          </div>
+          <div class="item">
+            <div class="name">Smirnoff</div>
+            <div class="price">€ 10,00</div>
+            <div class="desc">Lemon / Tonic / Red Bull</div>
+          </div>
+          <div class="item">
+            <div class="name">Rum Barcelo</div>
+            <div class="price">€ 10,00</div>
+            <div class="desc">Cola</div>
+          </div>
+          <div class="item">
+            <div class="name">Tanqueray Ten</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Lemon / Tonic</div>
+          </div>
+          <div class="item">
+            <div class="name">Tanqueray 0</div>
+            <div class="price">€ 8,00</div>
+            <div class="desc">Lemon / Tonic</div>
+          </div>
+          <div class="item">
+            <div class="name">Cocktail analcolico</div>
+            <div class="price">€ 8,00</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">I Grandi Classici</h2>
+          <div class="divider"><span class="diamond"></span></div>
+          <div class="item">
+            <div class="name">Mojito</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Rum Barcelo blanco – Zucchero di canna – Lime – Menta – Orsini Soda club soda</div>
+          </div>
+          <div class="item">
+            <div class="name">Negroni</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Vermouth Gran Torino – Aperitivo Gran Torino – Tanqueray</div>
+          </div>
+          <div class="item">
+            <div class="name">Americano</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Vermouth Gran Torino – Aperitivo Gran Torino – Orsini Soda club soda</div>
+          </div>
+          <div class="item">
+            <div class="name">Margarita</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Tequila Casamigos blanco – Triple sec – Lime</div>
+          </div>
+          <div class="item">
+            <div class="name">Moscow Mule</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Vodka Smirnoff – Lime – Orsini Soda Ginger beer</div>
+          </div>
+          <div class="item">
+            <div class="name">Paloma</div>
+            <div class="price">€ 12,00</div>
+            <div class="desc">Tequila Casamigos blanco – Lime – Orsini Soda pink grapefruit</div>
+          </div>
+          <div class="item">
+            <div class="name">Visione</div>
+            <div class="price">€ 18,00</div>
+            <div class="desc">Lagavulin con cioccolato fondente</div>
+          </div>
+          <div class="item">
+            <div class="name">Rum Barcelo Imperial</div>
+            <div class="price">€ 12,00</div>
+          </div>
+          <div class="item">
+            <div class="name">Amari</div>
+            <div class="price">€ 5,00</div>
+            <div class="desc">Montenegro / Jägermeister</div>
+          </div>
+          <div class="item">
+            <div class="name">Cicchetto</div>
+            <div class="price">€ 5,00</div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer"><img class="brand-logo" src="/img/LOGO_N.png" alt="Laguna Lakeside Reserve" />
+        <div class="page-number">3 / 4</div>
+      </footer>
+    </section>
+
+    <section id="pagina-4" class="page">
+      <div>
+        <header class="page-header"><img src="/img/ALPHA_GLIFO_B.png" alt="" /></header>
+
+        <div class="section signature">
+          <h2 class="section-title">Drink List</h2>
+          <div class="divider"><span class="diamond"></span></div>
+
+          <div class="item">
+            <div class="name">Kentucky – Italian Sour</div>
+            <div class="price">€ 13,00</div>
+            <div class="desc">Bourbon, Limoncello, zucchero di canna liquido, soluzione salina</div>
+          </div>
+          <div class="item">
+            <div class="name">Ginger Fizz</div>
+            <div class="price">€ 13,00</div>
+            <div class="desc">Vodka Smirnoff, liquore al bergamotto, sciroppo di zucchero, succo di limone, Orsini Soda
+              ginger beer</div>
+          </div>
+          <div class="item">
+            <div class="name">Non è un Mojito</div>
+            <div class="price">€ 13,00</div>
+            <div class="desc">Barcelo Blanco, Barcelo Imperial, tè nero alla vaniglia, liquore menta bianca, sciroppo di
+              zucchero, succo di lime, Orsini Soda club soda</div>
+          </div>
+          <div class="item">
+            <div class="name">Basiltini</div>
+            <div class="price">€ 13,00</div>
+            <div class="desc">Gin infuso al basilico, vermouth Gran Torino extra dry, soluzione salina, olio al basilico
+            </div>
+          </div>
+          <div class="item">
+            <div class="name">Billie’s in Laguna</div>
+            <div class="price">€ 13,00</div>
+            <div class="desc">Tequila Casamigos Blanco, mezcal, liquore al sambuco, sciroppo di agave, succo di limone
+            </div>
+          </div>
+          <div class="item">
+            <div class="name">Niki Niki</div>
+            <div class="price">€ 13,00</div>
+            <div class="desc">Tequila Casamigos Reposado, sciroppo al caramello salato, succo di lime, Orsini Soda spicy
+              watermelon</div>
+          </div>
+          <div class="item">
+            <div class="name">Ruby</div>
+            <div class="price">€ 8,00</div>
+            <div class="desc">Cordiale lamponi, succo di limone, Orsini Soda club soda</div>
+          </div>
+          <div class="item">
+            <div class="name">Gold</div>
+            <div class="price">€ 8,00</div>
+            <div class="desc">Sciroppo al miele, succo di zenzero, succo di limone, succo di lime, Orsini Soda club soda
+            </div>
+          </div>
+          <div class="item">
+            <div class="name">Coral</div>
+            <div class="price">€ 8,00</div>
+            <div class="desc">Sciroppo di ibisco, succo ananas, succo di lime, Orsini Soda club soda</div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer"><img class="brand-logo" src="/img/LOGO_N.png" alt="Laguna Lakeside Reserve" />
+        <div class="page-number">4 / 4</div>
+      </footer>
+    </section>
+  </main>
+</body>
+
+</html>
